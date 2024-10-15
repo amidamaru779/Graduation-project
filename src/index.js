@@ -1,3 +1,3 @@
-import orderCall from "./modules/orderCall"
+import orderCall from './modules/orderCall'
 
 orderCall()
