@@ -1,6 +1,8 @@
-const slider = () => {
-    const sliderBlock = document.querySelector('#benefits')
-    const slides = document.querySelectorAll('.benefits__item')
+const servicesSlider = () => {
+
+    const serviceBlock = document.querySelector('#services')
+    const serviceSlide = document.querySelectorAll('.service-block')
+
     const timeInterval = 2000
 
     let slideCount = 0
@@ -9,11 +11,11 @@ const slider = () => {
     let interval
 
     const slideShow = () => {
-        slides.forEach((item, index) => {
+        serviceSlide.forEach((item, index) => {
             item.style.display = "none"
 
             if (window.innerWidth >= 576) {
-                slideCount = 3
+                slideCount = 2
                 if (index >= currentSlide && index < currentSlide + slideCount) {
                     item.style.display = "block"
                 }
@@ -38,13 +40,13 @@ const slider = () => {
     }
 
     const autoSlide = () => {
-        prevSlide(slides, currentSlide, 'benefits__item-active')
+        prevSlide(serviceSlide, currentSlide, 'service-block-active')
         currentSlide += slideCount
 
-        if (currentSlide >= slides.length) {
+        if (currentSlide >= serviceSlide.length) {
             currentSlide = 0
         }
-        nextSlide(slides, currentSlide, 'benefits__item-active')
+        nextSlide(serviceSlide, currentSlide, 'service-block-active')
         slideShow()
     }
 
@@ -55,40 +57,39 @@ const slider = () => {
         clearInterval(interval)
     }
 
-    sliderBlock.addEventListener('click', (e) => {
+    serviceBlock.addEventListener('click', (e) => {
         e.preventDefault()
 
-        prevSlide(slides, currentSlide, 'benefits__item-active')
-        if (e.target.closest('.benefits__arrow--left')) {
+        prevSlide(serviceSlide, currentSlide, 'service-block-active')
+        if (e.target.closest('.services__arrow--left')) {
             currentSlide -= slideCount
 
 
-        } else if (e.target.closest('.benefits__arrow--right')) {
+        } else if (e.target.closest('.services__arrow--right')) {
             currentSlide += slideCount
 
         }
-        if (currentSlide >= slides.length) {
+        if (currentSlide >= serviceSlide.length) {
             currentSlide = 0
         }
         if (currentSlide < 0) {
-            currentSlide = slides.length - slideCount
+            currentSlide = serviceSlide.length - slideCount
         }
-        nextSlide(slides, currentSlide, 'benefits__item-active')
+        nextSlide(serviceSlide, currentSlide, 'service-block-active')
     })
-    sliderBlock.addEventListener('mouseenter', (e) => {
-        if (e.target.matches('.benefits-arrows')) {
+    serviceBlock.addEventListener('mouseenter', (e) => {
+        if (e.target.matches('.services-arrows')) {
             stopSlide()
         }
     }, true)
-    sliderBlock.addEventListener('mouseleave', (e) => {
-        if (e.target.matches('.benefits-arrows')) {
+    serviceBlock.addEventListener('mouseleave', (e) => {
+        if (e.target.matches('.services-arrows')) {
             startSlide(timeInterval)
         }
     }, true)
 
     slideShow()
     startSlide(timeInterval)
-
 }
 
-export default slider
+export default servicesSlider
