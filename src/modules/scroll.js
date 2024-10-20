@@ -24,6 +24,7 @@ const scroll = () => {
     const checkScrollButtonVisibility = () => {
         const sectionRect = firstSection.getBoundingClientRect();
         if (sectionRect.bottom <= 0) {
+            scrollButton.classList.add('pointer')
             scrollButton.style.display = 'block'
         } else {
             scrollButton.style.display = 'none'
