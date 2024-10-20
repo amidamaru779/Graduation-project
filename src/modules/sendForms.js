@@ -88,7 +88,7 @@ const sendForms = ({
                 getBlock().remove()
             }, 2000);
         }
-    };
+    }
     try {
         if (!form) {
             throw new Error('Пожалуйста введите правильную форму')
