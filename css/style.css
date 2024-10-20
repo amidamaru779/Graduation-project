@@ -1597,6 +1597,7 @@ input.error {
 }
 
 .benefits__item {
+  display: none;
   width: 100%;
   max-width: 185px;
 }

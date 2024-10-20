@@ -10,13 +10,12 @@ const slider = () => {
 
     const slideShow = () => {
         slides.forEach((item, index) => {
-            item.classList.remove('benefits_item-active')
+            item.style.display = "none"
+
             if (window.innerWidth >= 576) {
                 slideCount = 3
                 if (index >= currentSlide && index < currentSlide + slideCount) {
                     item.style.display = "block"
-                } else {
-                    item.style.display = "none"
                 }
             } else {
                 slideCount = 1
