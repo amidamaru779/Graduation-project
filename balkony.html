@@ -167,11 +167,12 @@
 						<input name="calc-input" type="number" class="form-control" id="calc-input" placeholder="Площадь (м&sup2;)">
 					  </div>
 				</div>
-				<div class="col-md-12 col-md-6">
+				<div class="col-md-6">
 					<div class="form-group">
 						<label for="calc-total" class="text-warning">Итого</label>
-						<label name="calc-total" type="number" class="form-control" id="calc-total" placeholder="Итого">0</label>
-					  </div>
+						<input name="calc-total" type="number" class="form-control" id="calc-total" placeholder="0" readonly></input>
+						
+					</div>
 				</div>
 			</div>
     	</div>
@@ -463,12 +464,12 @@
     						<form name="action-form" class="form-horizontal">
     							<div class="form-group">
     								<div class="col-sm-12">
-    									<input type="text" name="fio" class="form-control required" placeholder="ваше имя">
+    									<input type="text" name="fio" class="form-control required" placeholder="ваше имя" required>
     								</div>
     							</div>
     							<div class="form-group">
     								<div class="col-sm-12">
-    									<input type="text" name="phone" class="form-control required" placeholder="ваш телефон" data-mask="+7 (999) 999-99-99">
+    									<input type="text" name="phone" class="form-control required" placeholder="ваш телефон" required data-mask="+7 (999) 999-99-99">
     								</div>
     							</div>
     							<div class="form-group">
@@ -625,6 +626,10 @@
 	    		</div>
     		</div>
     	</div>
+		<div id="modal" class="modal" style="display: none;">
+			<span class="close" id="closeBtn">x</span>
+			<img class="modal-content" id="modalImg">
+		</div>
     </div>
     <div id="order_2" class="order">
     	<div class="container">
@@ -651,12 +656,12 @@
     						<form name="action-form2" class="form-horizontal">
     							<div class="form-group">
     								<div class="col-sm-12">
-    									<input type="text" name="fio" class="form-control required" placeholder="ваше имя">
+    									<input type="text" name="fio" class="form-control required" placeholder="ваше имя" required>
     								</div>
     							</div>
     							<div class="form-group">
     								<div class="col-sm-12">
-    									<input type="text" name="phone" class="form-control required" placeholder="ваш телефон" data-mask="+7 (999) 999-99-99">
+    									<input type="text" name="phone" class="form-control required" placeholder="ваш телефон" required data-mask="+7 (999) 999-99-99">
     								</div>
     							</div>
     							<div class="form-group">

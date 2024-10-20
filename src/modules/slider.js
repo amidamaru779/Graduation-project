@@ -1,94 +1,62 @@
 const slider = () => {
-    const sliderBlock = document.querySelector('#benefits')
-    const slides = document.querySelectorAll('.benefits__item')
-    const timeInterval = 2000
+    const createSlider = (blockSelector, itemSelector, arrowLeft, arrowRight, itemClassActive, count) => {
+        const sliderBlock = document.querySelector(blockSelector)
+        const slides = document.querySelectorAll(itemSelector)
 
-    let slideCount = 0
-    let currentSlide = 0
+        let slideCount = 0
+        let currentSlide = 0
 
-    let interval
+        const slideShow = () => {
+            slides.forEach((item, index) => {
+                item.style.display = "none"
 
-    const slideShow = () => {
-        slides.forEach((item, index) => {
-            item.style.display = "none"
-
-            if (window.innerWidth >= 576) {
-                slideCount = 3
-                if (index >= currentSlide && index < currentSlide + slideCount) {
-                    item.style.display = "block"
-                }
-            } else {
-                slideCount = 1
-                if (index === currentSlide) {
-                    item.style.display = "block"
+                if (window.innerWidth >= 576) {
+                    slideCount = count
+                    if (index >= currentSlide && index < currentSlide + slideCount) {
+                        item.style.display = "block"
+                    }
                 } else {
-                    item.style.display = "none"
+                    slideCount = 1
+                    if (index === currentSlide) {
+                        item.style.display = "block"
+                    }
                 }
+            })
+        }
+
+        const prevSlide = (elems, index) => {
+            elems[index].classList.remove(itemClassActive);
+            slideShow()
+        }
+
+        const nextSlide = (elems, index) => {
+            elems[index].classList.add(itemClassActive);
+            slideShow()
+        }
+
+        sliderBlock.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            prevSlide(slides, currentSlide)
+            if (e.target.closest(arrowLeft)) {
+                currentSlide -= slideCount
+            } else if (e.target.closest(arrowRight)) {
+                currentSlide += slideCount
             }
+
+            if (currentSlide >= slides.length) {
+                currentSlide = 0
+            }
+            if (currentSlide < 0) {
+                currentSlide = slides.length - slideCount
+            }
+            nextSlide(slides, currentSlide)
         })
-    }
-
-    const prevSlide = (elems, index, strClass) => {
-        elems[index].classList.remove(strClass)
+        window.addEventListener('resize', slideShow)
         slideShow()
     }
-    const nextSlide = (elems, index, strClass) => {
-        elems[index].classList.add(strClass)
-        slideShow()
-    }
-
-    const autoSlide = () => {
-        prevSlide(slides, currentSlide, 'benefits__item-active')
-        currentSlide += slideCount
-
-        if (currentSlide >= slides.length) {
-            currentSlide = 0
-        }
-        nextSlide(slides, currentSlide, 'benefits__item-active')
-        slideShow()
-    }
-
-    const startSlide = (timer = 1500) => {
-        interval = setInterval(autoSlide, timer)
-    }
-    const stopSlide = () => {
-        clearInterval(interval)
-    }
-
-    sliderBlock.addEventListener('click', (e) => {
-        e.preventDefault()
-
-        prevSlide(slides, currentSlide, 'benefits__item-active')
-        if (e.target.closest('.benefits__arrow--left')) {
-            currentSlide -= slideCount
-
-
-        } else if (e.target.closest('.benefits__arrow--right')) {
-            currentSlide += slideCount
-
-        }
-        if (currentSlide >= slides.length) {
-            currentSlide = 0
-        }
-        if (currentSlide < 0) {
-            currentSlide = slides.length - slideCount
-        }
-        nextSlide(slides, currentSlide, 'benefits__item-active')
-    })
-    sliderBlock.addEventListener('mouseenter', (e) => {
-        if (e.target.matches('.benefits-arrows')) {
-            stopSlide()
-        }
-    }, true)
-    sliderBlock.addEventListener('mouseleave', (e) => {
-        if (e.target.matches('.benefits-arrows')) {
-            startSlide(timeInterval)
-        }
-    }, true)
-
-    slideShow()
-    startSlide(timeInterval)
-
+    createSlider('#benefits', '.benefits__item', '.benefits__arrow--left', '.benefits__arrow--right', 'benefits__item-active', 3);
+    createSlider('#services', '.service-block', '.services__arrow--left', '.services__arrow--right', 'service-block-active', 2);
 }
 
 export default slider

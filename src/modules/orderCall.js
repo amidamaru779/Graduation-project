@@ -2,7 +2,6 @@ import {
     animate
 } from "./helpers"
 
-
 const orderCall = () => {
     const substrate = document.querySelector('.overlay')
     const callBackBtn = document.querySelector('.btn-block')
