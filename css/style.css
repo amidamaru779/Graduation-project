@@ -500,6 +500,8 @@ input.error {
   background-color: #f5f6f6;
 }
 .benefits-inner {
+  display: flex;
+  justify-content: center;
   text-align: center;
 }
 .benefit-image {
@@ -777,7 +779,7 @@ p.services-image_mobile {
   display: none;
 }
 #documents {
-  background: url("../images/document-bg.jpg");
+  background: url("/images/document-bg.jpg");
 }
 .modal {
   display: flex;
@@ -792,12 +794,10 @@ p.services-image_mobile {
   height: 100%;
   background-color: rgba(0,0,0,0.8);
 }
-
 .modal-content {
   max-width: 90%;
   max-height: 80%;
 }
-
 .close {
   position: absolute;
   top: 10px;

@@ -5,9 +5,7 @@ const form = () => {
     const userName = document.querySelectorAll('.form-control[name="fio"]')
     const userPhone = document.querySelectorAll('.form-control[name="phone"]')
 
-    const isUserDataValid = (regExp, data) => {
-        return regExp.test(data)
-    }
+    const isUserDataValid = (regExp, data) => regExp.test(data)
 
     const userValid = () => {
         userName.forEach(item => {
@@ -37,9 +35,11 @@ const form = () => {
                 } else if (item.value.trim() === "") {
                     item.classList.remove('success');
                     item.setCustomValidity('Заполните это поле')
-                } else {
+                } else if (item.value.length > 17) {
                     item.classList.remove('success')
                     item.setCustomValidity('Разрешён ввод только: + (плюс) и 16 цифр')
+                } else {
+                    item.classList.remove('success')
                 }
             })
         })

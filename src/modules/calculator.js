@@ -15,7 +15,7 @@ const calculator = () => {
         const calcSquareValue = calcSquare.value
 
         if (!isNaN(calcTypeValue) && !isNaN(calcTypeMatherialValue)) {
-            let totalValue = Math.round(calcTypeValue * calcTypeMatherialValue *
+            const totalValue = Math.round(calcTypeValue * calcTypeMatherialValue *
                 calcSquareValue)
             calcTotal.value = totalValue
         } else {

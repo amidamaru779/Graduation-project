@@ -8,6 +8,7 @@ const slider = () => {
 
         const slideShow = () => {
             slides.forEach((item, index) => {
+
                 item.style.display = "none"
 
                 if (window.innerWidth >= 576) {
